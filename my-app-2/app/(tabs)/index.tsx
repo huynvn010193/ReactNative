@@ -1,59 +1,50 @@
-import { StyleSheet, Text, View } from "react-native";
+import { useState } from "react";
+import { Button, StyleSheet, Text, TouchableOpacity, View } from "react-native";
 
 export default function HomeScreen() {
+  const [name, setName] = useState<string>("react-native");
+  const [count, setCount] = useState<number>(0);
   return (
     <View style={styles.container}>
-      <Text style={styles.header}>HoiDanIT</Text>
-      <Text style={styles.parent}>
-        Parent
-        <Text style={styles.child}>Child</Text>
+      <Text style={{ fontSize: 40, fontWeight: "600" }}>
+        {count} hello world
       </Text>
-      <Text style={styles.hello1}>Hello world 2</Text>
-      <Text>Hello world 2</Text>
+      <Button
+        title='Increase'
+        color='#007AFF'
+        onPress={() => setCount(count + 1)}
+      />
+      <TouchableOpacity
+        style={styles.styleButton}
+        onPress={() => setCount(count + 1)}
+      >
+        <Text
+          style={{
+            color: "#fff",
+            fontSize: 20,
+            fontWeight: "600",
+            textAlign: "center",
+          }}
+        >
+          Increase
+        </Text>
+      </TouchableOpacity>
     </View>
   );
 }
 
 const styles = StyleSheet.create({
-  titleContainer: {
-    flexDirection: "row",
-    alignItems: "center",
-    gap: 8,
-  },
-  stepContainer: {
-    gap: 8,
-    marginBottom: 8,
-  },
-  reactLogo: {
-    height: 178,
-    width: 290,
-    bottom: 0,
-    left: 0,
-    position: "absolute",
-  },
   container: {
     flex: 1,
     alignItems: "center",
     justifyContent: "center",
     backgroundColor: "#fff",
   },
-  hello1: {
-    color: "red",
-    fontSize: 60,
-    borderColor: "green",
-    borderWidth: 1,
-  },
-  header: {
-    fontSize: 30,
-    fontWeight: "bold",
-    marginBottom: 12,
-  },
-  parent: {
-    color: "green",
-    fontSize: 60,
-  },
-  child: {
-    color: "blue",
-    fontSize: 30,
+  styleButton: {
+    backgroundColor: "#007AFF",
+    paddingVertical: 10,
+    borderRadius: 8,
+    marginTop: 26,
+    padding: 20,
   },
 });
