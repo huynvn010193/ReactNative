@@ -1,19 +1,55 @@
 import { useState } from "react";
-import { Button, StyleSheet, Text, TouchableOpacity, View } from "react-native";
+import {
+  StyleSheet,
+  Text,
+  TextInput,
+  TouchableOpacity,
+  View,
+} from "react-native";
 
 export default function HomeScreen() {
-  const [name, setName] = useState<string>("react-native");
+  const [name, setName] = useState<string>("");
   const [count, setCount] = useState<number>(0);
+  const [age, setAge] = useState<number>(0);
   return (
     <View style={styles.container}>
-      <Text style={{ fontSize: 40, fontWeight: "600" }}>
-        {count} hello world
-      </Text>
-      <Button
+      <View>
+        <Text style={{ fontSize: 40, fontWeight: "600" }}>Name: {name}</Text>
+        <TextInput
+          multiline
+          style={{
+            borderColor: "green",
+            borderWidth: 1,
+            width: 200,
+            padding: 15,
+          }}
+          onChangeText={(text) => setName(text)}
+        />
+      </View>
+
+      <View>
+        <Text style={{ fontSize: 40, fontWeight: "600" }}>Age: {age}</Text>
+        <TextInput
+          style={{
+            borderColor: "green",
+            borderWidth: 1,
+            width: 200,
+            padding: 15,
+          }}
+          onChangeText={(text) => setAge(+text)}
+          keyboardType='numeric'
+          maxLength={2}
+        />
+      </View>
+
+      {/* <Button
         title='Increase'
         color='#007AFF'
         onPress={() => setCount(count + 1)}
-      />
+      /> */}
+      <Text style={{ fontSize: 40, fontWeight: "600" }}>
+        {count} hello world
+      </Text>
       <TouchableOpacity
         style={styles.styleButton}
         onPress={() => setCount(count + 1)}
