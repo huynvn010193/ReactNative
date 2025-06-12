@@ -1,70 +1,31 @@
 import { useState } from "react";
-import {
-  StyleSheet,
-  Text,
-  TextInput,
-  TouchableOpacity,
-  View,
-} from "react-native";
+import { ScrollView, StyleSheet, Text, View } from "react-native";
 
 export default function HomeScreen() {
-  const [name, setName] = useState<string>("");
-  const [count, setCount] = useState<number>(0);
-  const [age, setAge] = useState<number>(0);
+  const [students, setStudents] = useState([
+    { id: 1, name: "Edric1", age: 20 },
+    { id: 2, name: "Edric2", age: 21 },
+    { id: 3, name: "Edric3", age: 22 },
+    { id: 4, name: "Edric4", age: 23 },
+    { id: 5, name: "Edric5", age: 24 },
+    { id: 6, name: "Edric6", age: 25 },
+    { id: 7, name: "Edric7", age: 26 },
+    { id: 8, name: "Edric8", age: 27 },
+    { id: 9, name: "Edric9", age: 28 },
+  ]);
   return (
     <View style={styles.container}>
-      <View>
-        <Text style={{ fontSize: 40, fontWeight: "600" }}>Name: {name}</Text>
-        <TextInput
-          multiline
-          style={{
-            borderColor: "green",
-            borderWidth: 1,
-            width: 200,
-            padding: 15,
-          }}
-          onChangeText={(text) => setName(text)}
-        />
-      </View>
-
-      <View>
-        <Text style={{ fontSize: 40, fontWeight: "600" }}>Age: {age}</Text>
-        <TextInput
-          style={{
-            borderColor: "green",
-            borderWidth: 1,
-            width: 200,
-            padding: 15,
-          }}
-          onChangeText={(text) => setAge(+text)}
-          keyboardType='numeric'
-          maxLength={2}
-        />
-      </View>
-
-      {/* <Button
-        title='Increase'
-        color='#007AFF'
-        onPress={() => setCount(count + 1)}
-      /> */}
-      <Text style={{ fontSize: 40, fontWeight: "600" }}>
-        {count} hello world
-      </Text>
-      <TouchableOpacity
-        style={styles.styleButton}
-        onPress={() => setCount(count + 1)}
-      >
-        <Text
-          style={{
-            color: "#fff",
-            fontSize: 20,
-            fontWeight: "600",
-            textAlign: "center",
-          }}
-        >
-          Increase
-        </Text>
-      </TouchableOpacity>
+      <Text style={{ fontSize: 60 }}>Helloworld</Text>
+      <ScrollView>
+        {students.map((student) => (
+          <View
+            key={student.id}
+            style={{ padding: 30, backgroundColor: "pink", marginBottom: 30 }}
+          >
+            <Text>{student.name}</Text>
+          </View>
+        ))}
+      </ScrollView>
     </View>
   );
 }
@@ -72,15 +33,8 @@ export default function HomeScreen() {
 const styles = StyleSheet.create({
   container: {
     flex: 1,
-    alignItems: "center",
-    justifyContent: "center",
     backgroundColor: "#fff",
-  },
-  styleButton: {
-    backgroundColor: "#007AFF",
-    paddingVertical: 10,
-    borderRadius: 8,
-    marginTop: 26,
-    padding: 20,
+    paddingTop: 50,
+    paddingHorizontal: 20,
   },
 });
