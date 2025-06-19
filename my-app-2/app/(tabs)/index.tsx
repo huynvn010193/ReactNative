@@ -1,5 +1,5 @@
 import { useState } from "react";
-import { ScrollView, StyleSheet, Text, View } from "react-native";
+import { FlatList, StyleSheet, Text, View } from "react-native";
 
 export default function HomeScreen() {
   const [students, setStudents] = useState([
@@ -15,8 +15,9 @@ export default function HomeScreen() {
   ]);
   return (
     <View style={styles.container}>
-      <Text style={{ fontSize: 60 }}>Helloworld</Text>
-      <ScrollView>
+      <Text style={{ fontSize: 60 }}>React</Text>
+
+      {/* <ScrollView>
         {students.map((student) => (
           <View
             key={student.id}
@@ -25,7 +26,26 @@ export default function HomeScreen() {
             <Text>{student.name}</Text>
           </View>
         ))}
-      </ScrollView>
+      </ScrollView> */}
+      <FlatList
+        data={students}
+        keyExtractor={(item) => item.id.toString()}
+        numColumns={2}
+        renderItem={({ item }) => {
+          return (
+            <View
+              style={{
+                padding: 30,
+                backgroundColor: "pink",
+                marginBottom: 30,
+                marginHorizontal: 30,
+              }}
+            >
+              <Text>{item.name}</Text>
+            </View>
+          );
+        }}
+      />
     </View>
   );
 }
