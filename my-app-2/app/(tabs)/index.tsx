@@ -47,6 +47,7 @@ export default function HomeScreen() {
       <View style={styles.body}>
         <FlatList
           data={listTodo}
+          keyExtractor={(item) => item.id.toString()}
           renderItem={({ item }) => {
             return <Text style={styles.todo_item}>{item.name}</Text>;
           }}
