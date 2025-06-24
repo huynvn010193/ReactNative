@@ -22,9 +22,17 @@ export default function HomeScreen() {
   }
 
   const handleAddTodo = () => {
-    if (!todo) return;
+    if (!todo) {
+      alert("Empty todo");
+      return;
+    }
     setListTodo([...listTodo, { id: randomInterger(2, 2000000), name: todo }]);
     setTodo("");
+  };
+
+  const deleteTodo = (id: number) => {
+    const newList = listTodo.filter((item) => item.id !== id);
+    setListTodo(newList);
   };
 
   return (
@@ -49,7 +57,16 @@ export default function HomeScreen() {
           data={listTodo}
           keyExtractor={(item) => item.id.toString()}
           renderItem={({ item }) => {
-            return <Text style={styles.todo_item}>{item.name}</Text>;
+            return (
+              <Pressable
+                onPress={() => {
+                  deleteTodo(item.id);
+                }}
+                style={({ pressed }) => ({ opacity: pressed ? 0.5 : 1 })}
+              >
+                <Text style={styles.todo_item}>{item.name}</Text>
+              </Pressable>
+            );
           }}
         />
       </View>
